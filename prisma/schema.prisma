@@ -16,11 +16,12 @@ model Pet {
   size        String
   age         String
   gender      String
-  org         Org    @relation(fields: [orgEmail], references: [email])
-  orgEmail    String
+  org         Org    @relation(fields: [org_id], references: [id])
+  org_id      String
 }
 
 model Org {
+  id            String @id @default(uuid())
   name          String
   email         String @unique
   cep           String
