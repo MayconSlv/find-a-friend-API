@@ -22,7 +22,7 @@ export class InMemoryOrgsRepository implements OrgRepository {
   }
 
   async findByEmail(email: string) {
-    const org = await this.items.find((org) => org.email === email)
+    const org = this.items.find((org) => org.email === email)
 
     if (!org) {
       return null
@@ -32,12 +32,16 @@ export class InMemoryOrgsRepository implements OrgRepository {
   }
 
   async findById(id: string) {
-    const org = await this.items.find((org) => org.id === id)
+    const org = this.items.find((org) => org.id === id)
 
     if (!org) {
       return null
     }
 
     return org
+  }
+
+  async fetchByCity(address: string) {
+    return this.items.filter((org) => org.address === address)
   }
 }
