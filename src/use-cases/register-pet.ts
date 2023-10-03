@@ -1,15 +1,15 @@
-import { Pet } from '@prisma/client'
+import { Pet, Species, Age, Gender, Size } from '@prisma/client'
 import { PetRepository } from '../repository/pet-repository'
 import { OrgRepository } from '@/repository/org-repository'
 
 interface RegisterPetUseCaseRequest {
   name: string
   description: string
-  species: string
+  species: Species
   breed: string
-  size: string
-  age: string
-  gender: string
+  size: Size
+  age: Age
+  gender: Gender
   org_id: string
 }
 
