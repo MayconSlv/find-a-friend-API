@@ -1,6 +1,6 @@
 import { Org, Pet, Prisma } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
-import { PetRepository, filterEnum } from '../pet-repository'
+import { PetRepository, FilterEnum } from '../pet-repository'
 
 export class InMemoryPetsRepository implements PetRepository {
   public items: Pet[] = []
@@ -29,7 +29,7 @@ export class InMemoryPetsRepository implements PetRepository {
     return this.items.filter((item) => orgsArrId.includes(item.org_id))
   }
 
-  async findByFilter({ age, gender, size, species }: filterEnum) {
+  async findByFilter({ age, gender, size, species }: FilterEnum) {
     let filteredPets = this.items
 
     if (age) {
@@ -49,5 +49,15 @@ export class InMemoryPetsRepository implements PetRepository {
     }
 
     return filteredPets
+  }
+
+  async findPetById(petId: string) {
+    const pet = this.items.find((pet) => pet.id === petId)
+
+    if (!pet) {
+      return null
+    }
+
+    return pet
   }
 }

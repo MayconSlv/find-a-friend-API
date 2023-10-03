@@ -9,6 +9,7 @@ export interface FilterEnum {
 
 export interface PetRepository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
+  findPetById(petId: string): Promise<Pet | null>
   findManyByOrgs(orgs: Org[]): Promise<Pet[]>
   findByFilter(filter: FilterEnum): Promise<Pet[] | null>
 }
