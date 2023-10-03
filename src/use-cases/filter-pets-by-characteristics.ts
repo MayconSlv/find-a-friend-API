@@ -1,5 +1,6 @@
 import { Pet } from '@prisma/client'
 import { PetRepository, FilterEnum } from '../repository/pet-repository'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface FilterPetsByCharacteristicsUseCaseRequest {
   query: FilterEnum
@@ -18,7 +19,7 @@ export class FilterPetsByCharacteristicsUseCase {
     const pets = await this.petsRepository.findByFilter(query)
 
     if (!pets) {
-      throw new Error('Pets not found.')
+      throw new ResourceNotFoundError()
     }
 
     return {

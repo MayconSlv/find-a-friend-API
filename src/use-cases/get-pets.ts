@@ -1,6 +1,7 @@
 import { Pet } from '@prisma/client'
 import { PetRepository } from '../repository/pet-repository'
 import { OrgRepository } from '@/repository/org-repository'
+import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface GetPetsUseCaseRequest {
   address: string
@@ -22,7 +23,7 @@ export class GetPetsUseCase {
     const orgs = await this.orgsRepository.fetchByCity(address)
 
     if (!orgs) {
-      throw new Error('Organizations not found.')
+      throw new ResourceNotFoundError()
     }
 
     const pets = await this.petsRepository.findManyByOrgs(orgs)
