@@ -7,17 +7,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Age {
+  INFANT
+  YOUNG
+  ADULT
+  SENIOR
+}
+
+enum Size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum Species {
+  CAT
+  DOG
+  BIRD
+  FISH
+  RABBIT
+  OTHER
+}
+
 model Pet {
-  id          String @id @default(uuid())
+  id          String  @id @default(uuid())
   name        String
   description String
-  species     String
+  species     Species
   breed       String
-  size        String
-  age         String
-  gender      String
-  org         Org    @relation(fields: [org_id], references: [id])
-  org_id      String
+  size        Size
+  age         Age
+  gender      Gender
+
+  org    Org    @relation(fields: [org_id], references: [id])
+  org_id String
 }
 
 model Org {
@@ -28,7 +57,8 @@ model Org {
   address       String
   phone         String
   password_hash String
-  Pet           Pet[]
+
+  pets Pet[]
 
   @@map("orgs")
 }
