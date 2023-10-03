@@ -2,6 +2,13 @@
   "name": "find-a-friend",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node build/src/server.ts",
+    "start:dev": "tsx watch src/server.ts",
+    "build": "tsup src --out-dir build",
+    "test": "vitest run --dir src/use-cases",
+    "test:watch": "vitest --dir src/use-cases"
+  },
   "license": "MIT",
   "devDependencies": {
     "@rocketseat/eslint-config": "2.1.0",
@@ -12,7 +19,8 @@
     "tsup": "7.2.0",
     "tsx": "3.13.0",
     "typescript": "5.2.2",
-    "vitest": "0.34.6"
+    "vitest": "0.34.6",
+    "vitest-tsconfig-paths": "3.4.1"
   },
   "dependencies": {
     "@prisma/client": "5.3.1",
