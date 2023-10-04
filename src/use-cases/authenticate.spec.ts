@@ -13,7 +13,7 @@ describe('Authenticate Use Case', async () => {
     sut = new AuthenticateUseCase(orgRepository)
   })
 
-  it('shout be able to authenticate', async () => {
+  it('should be able to authenticate', async () => {
     await orgRepository.create({
       address: 'Javascript Street',
       cep: '11111111',
@@ -31,7 +31,7 @@ describe('Authenticate Use Case', async () => {
     expect(organization.id).toEqual(expect.any(String))
   })
 
-  it('shout not be able to authenticate with wrong email', async () => {
+  it('should not be able to authenticate with wrong email', async () => {
     await orgRepository.create({
       address: 'Javascript Street',
       cep: '11111111',
@@ -49,7 +49,7 @@ describe('Authenticate Use Case', async () => {
     ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
-  it('shout not be able to authenticate with wrong password', async () => {
+  it('should not be able to authenticate with wrong password', async () => {
     await orgRepository.create({
       address: 'Javascript Street',
       cep: '11111111',
