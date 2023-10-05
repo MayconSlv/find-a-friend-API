@@ -53,7 +53,7 @@ describe('Filter Pets By Characteristics Use Case', async () => {
       size: 'SMALL',
     }
 
-    const { pets } = await sut.execute({ query })
+    const { pets } = await sut.execute(query)
 
     expect(pets).toHaveLength(1)
     expect(pets).toEqual([expect.objectContaining({ name: 'javascript' })])

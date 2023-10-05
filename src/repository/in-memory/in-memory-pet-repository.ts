@@ -29,7 +29,7 @@ export class InMemoryPetsRepository implements PetRepository {
     return this.items.filter((item) => orgsArrId.includes(item.org_id))
   }
 
-  async findByFilter({ age, gender, size, species }: FilterEnum) {
+  async findManyByFilter({ age, gender, size, species }: FilterEnum) {
     let filteredPets = this.items
 
     if (age) {

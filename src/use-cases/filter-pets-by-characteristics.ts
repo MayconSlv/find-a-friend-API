@@ -1,9 +1,13 @@
 import { Pet } from '@prisma/client'
-import { PetRepository, FilterEnum } from '../repository/pet-repository'
+import { PetRepository } from '../repository/pet-repository'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface FilterPetsByCharacteristicsUseCaseRequest {
-  query: FilterEnum
+  address: string
+  species?: string
+  size?: string
+  age?: string
+  gender?: string
 }
 
 interface FilterPetsByCharacteristicsUseCaseResponse {
@@ -14,9 +18,19 @@ export class FilterPetsByCharacteristicsUseCase {
   constructor(private petsRepository: PetRepository) {}
 
   async execute({
-    query,
+    age,
+    gender,
+    size,
+    species,
+    address,
   }: FilterPetsByCharacteristicsUseCaseRequest): Promise<FilterPetsByCharacteristicsUseCaseResponse> {
-    const pets = await this.petsRepository.findByFilter(query)
+    const pets = await this.petsRepository.findManyByFilter({
+      address,
+      age,
+      gender,
+      size,
+      species,
+    })
 
     if (!pets) {
       throw new ResourceNotFoundError()

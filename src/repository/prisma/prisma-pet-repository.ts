@@ -25,27 +25,30 @@ export class PrismaPetRepository implements PetRepository {
     return pets
   }
 
-  async findByFilter({ age, gender, size, species }: FilterEnum) {
+  async findManyByFilter({ address, age, gender, size, species }: FilterEnum) {
     const query: any = {}
 
-    if (age !== null) {
+    if (age) {
       query.age = age
     }
 
-    if (gender !== null) {
+    if (gender) {
       query.gender = gender
     }
 
-    if (size !== null) {
+    if (size) {
       query.size = size
     }
 
-    if (species !== null) {
+    if (species) {
       query.species = species
     }
 
     const pets = await prisma.pet.findMany({
       where: {
+        org: {
+          address,
+        },
         ...query,
       },
     })
