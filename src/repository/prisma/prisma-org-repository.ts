@@ -34,7 +34,10 @@ export class PrismaOrgRepository implements OrgRepository {
   async fetchByCity(address: string) {
     return await prisma.org.findMany({
       where: {
-        address,
+        address: {
+          equals: address,
+          mode: 'insensitive',
+        },
       },
     })
   }
