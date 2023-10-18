@@ -5,10 +5,22 @@ import { z } from 'zod'
 
 export async function filter(request: FastifyRequest, reply: FastifyReply) {
   const filterPetsQuerySchema = z.object({
-    species: z.string().optional(),
-    size: z.string().optional(),
-    age: z.string().optional(),
-    gender: z.string().optional(),
+    species: z
+      .enum(['cat', 'dog', 'bird', 'fish', 'rabbit', 'other'])
+      .optional()
+      .transform((value) => value?.toUpperCase()),
+    size: z
+      .enum(['small', 'medium', 'large'])
+      .optional()
+      .transform((value) => value?.toUpperCase()),
+    age: z
+      .enum(['infant', 'young', 'adult', 'senior'])
+      .optional()
+      .transform((value) => value?.toUpperCase()),
+    gender: z
+      .enum(['male', 'female', 'other'])
+      .optional()
+      .transform((value) => value?.toUpperCase()),
   })
 
   const addressParamsSchema = z.object({
@@ -35,7 +47,7 @@ export async function filter(request: FastifyRequest, reply: FastifyReply) {
     })
   } catch (error) {
     if (error instanceof ResourceNotFoundError) {
-      return reply.status(200).send()
+      return reply.status(409).send({ message: error.message })
     }
 
     throw Error
