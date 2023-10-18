@@ -50,8 +50,6 @@ export class RegisterPetUseCase {
       size,
       species,
     })
-    console.log(org.id)
-    console.log(pet.org_id)
 
     return {
       pet,

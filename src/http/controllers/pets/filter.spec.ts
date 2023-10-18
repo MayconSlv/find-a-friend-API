@@ -32,10 +32,10 @@ describe('Filter Pets (e2e)', async () => {
         },
         {
           age: 'ADULT',
-          breed: 'pastor alemao',
-          description: '',
+          breed: 'pastor alemão',
+          description: 'Um cão muito agitado, porém muito doce',
           gender: 'FEMALE',
-          name: '',
+          name: 'Tombo',
           org_id: id,
           size: 'LARGE',
           species: 'DOG',

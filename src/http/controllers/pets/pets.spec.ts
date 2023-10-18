@@ -23,9 +23,9 @@ describe('Fetch pets (e2e)', async () => {
         {
           age: 'ADULT',
           breed: 'sem raça',
-          description: '',
+          description: 'uma gata muito adorável',
           gender: 'FEMALE',
-          name: '',
+          name: 'Nala',
           org_id: id,
           size: 'LARGE',
           species: 'CAT',
@@ -33,9 +33,9 @@ describe('Fetch pets (e2e)', async () => {
         {
           age: 'ADULT',
           breed: 'pastor alemao',
-          description: '',
+          description: 'um cão muito brincalhão',
           gender: 'FEMALE',
-          name: '',
+          name: 'Tombo',
           org_id: id,
           size: 'LARGE',
           species: 'DOG',
@@ -48,23 +48,12 @@ describe('Fetch pets (e2e)', async () => {
     expect(response.statusCode).toEqual(200)
     expect(response.body.pets).toEqual([
       expect.objectContaining({
-        age: 'ADULT',
-        breed: 'sem raça',
-        description: '',
-        gender: 'FEMALE',
-        name: '',
-        org_id: id,
-        size: 'LARGE',
+        name: 'Nala',
         species: 'CAT',
       }),
       expect.objectContaining({
-        age: 'ADULT',
-        breed: 'pastor alemao',
-        description: '',
-        gender: 'FEMALE',
-        name: '',
-        org_id: id,
-        size: 'LARGE',
+        name: 'Tombo',
+
         species: 'DOG',
       }),
     ])

@@ -49,6 +49,7 @@ describe('Filter Pets By Characteristics Use Case', async () => {
     })
 
     const query = {
+      address: 'Javascript City',
       species: 'CAT',
       size: 'SMALL',
     }
