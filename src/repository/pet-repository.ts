@@ -2,10 +2,10 @@ import { Org, Pet, Prisma } from '@prisma/client'
 
 export interface FilterEnum {
   address: string
-  species?: string
-  size?: string
   age?: string
   gender?: string
+  size?: string
+  species?: string
 }
 
 export interface PetRepository {

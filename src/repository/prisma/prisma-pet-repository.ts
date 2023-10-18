@@ -47,7 +47,10 @@ export class PrismaPetRepository implements PetRepository {
     const pets = await prisma.pet.findMany({
       where: {
         org: {
-          address,
+          address: {
+            equals: address,
+            mode: 'insensitive',
+          },
         },
         ...query,
       },
