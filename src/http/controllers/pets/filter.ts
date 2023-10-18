@@ -50,6 +50,6 @@ export async function filter(request: FastifyRequest, reply: FastifyReply) {
       return reply.status(409).send({ message: error.message })
     }
 
-    throw Error
+    return reply.status(400).send({ message: 'Bad request.' })
   }
 }
